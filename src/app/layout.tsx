@@ -15,6 +15,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://jerwilcy.dev'),
   title: {
     default: "jerwilcy",
     template: "%s | jerwilcy",
