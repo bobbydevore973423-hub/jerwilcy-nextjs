@@ -2,11 +2,12 @@ import Link from "next/link";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import Comments from "@/components/comments";
-import { Calendar, Clock, ArrowLeft, Share2 } from "lucide-react";
+import { Calendar, Clock, ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
 import { getPostBySlug, getAllPosts } from "@/lib/posts";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { mdxComponents } from "@/lib/mdx";
+import CopyLinkButton from "@/components/copy-link-button";
 
 export const dynamic = 'force-static';
 
@@ -17,9 +18,10 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   try {
-    const post = await getPostBySlug(params.slug);
+    const post = await getPostBySlug(slug);
     return {
       title: post.frontmatter.title,
       description: post.frontmatter.summary,
@@ -31,10 +33,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   let post;
   try {
-    post = await getPostBySlug(params.slug);
+    post = await getPostBySlug(slug);
   } catch (error) {
     notFound();
   }
@@ -118,13 +121,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             <div className="flex items-center justify-between p-6 rounded-xl bg-muted/30 border border-border/40 mb-12">
               <div className="font-medium">分享这篇文章</div>
               <div className="flex items-center gap-2">
-                <button
-                  onClick={() => navigator.clipboard.writeText(window.location.href)}
-                  className="h-10 w-10 inline-flex items-center justify-center rounded-lg bg-card border border-border text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
-                  title="复制链接"
-                >
-                  <Share2 className="h-4 w-4" />
-                </button>
+                <CopyLinkButton />
               </div>
             </div>
 
