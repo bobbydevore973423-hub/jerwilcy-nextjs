@@ -1,0 +1,51 @@
+---
+title: "图像分割工具包"
+description: "一个开源的语义分割工具包，提供预训练模型和易于使用的 API。"
+longDescription: "这个工具包提供了最新的深度学习模型用于图像分割任务，支持多种架构和预训练权重。"
+status: "active"
+tech: ["Python", "PyTorch", "FastAPI", "Docker"]
+github: "https://github.com/jerwilcy/image-segmentation-toolkit"
+demo: "https://demo.jerwilcy.dev/segmentation"
+featured: true
+startDate: "2024-01"
+endDate: null
+images: ["/images/projects/segmentation-toolkit.png"]
+---
+
+## 项目概述
+
+图像分割工具包是一个功能完整的深度学习项目，旨在为研究人员和开发者提供易于使用的图像分割解决方案。
+
+## 主要特性
+
+- **多种模型支持**: DeepLabV3+, PSPNet, UNet
+- **预训练权重**: 在 COCO 和 Pascal VOC 上预训练
+- **易于使用的 API**: 简单的 Python 接口
+- **高性能**: 支持 GPU 加速和批处理
+- **REST API**: 可直接部署为 Web 服务
+- **Docker 支持**: 一键部署
+
+## 技术栈
+
+- **PyTorch**: 深度学习框架
+- **FastAPI**: 高性能 Web 框架
+- **Docker**: 容器化部署
+- **GitHub Actions**: CI/CD 自动化
+
+## 快速开始
+
+```bash
+# 安装
+pip install image-segmentation-toolkit
+
+# 使用 Python API
+from segmentation import Predictor
+
+predictor = Predictor.from_pretrained("deeplabv3plus-resnet50")
+mask = predictor.predict("image.jpg")
+predictor.save_mask(mask, "output.png")
+```
+
+## 项目状态
+
+当前处于活跃开发状态，欢迎贡献!

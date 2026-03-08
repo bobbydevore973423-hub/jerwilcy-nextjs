@@ -1,0 +1,71 @@
+---
+title: "机器学习实验仪表板"
+description: "一个基于 Web 的仪表板，用于实时跟踪和可视化机器学习实验。"
+longDescription: "这个仪表板帮助研究团队追踪实验指标、比较模型性能，并可视化训练过程中的关键指标。"
+status: "completed"
+tech: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Recharts"]
+github: "https://github.com/jerwilcy/ml-dashboard"
+demo: "https://ml-dashboard.jerwilcy.dev"
+featured: true
+startDate: "2023-08"
+endDate: "2024-02"
+images: ["/images/projects/ml-dashboard.png"]
+---
+
+## 项目概述
+
+机器学习实验仪表板是一个专为 ML 研究团队设计的实验跟踪和可视化平台。
+
+## 核心功能
+
+- **实验跟踪**: 记录所有超参数和指标
+- **实时可视化**: 训练过程中的实时曲线更新
+- **模型比较**: 并排比较不同实验的的结果
+- **团队协作**: 多用户支持和权限管理
+- **自动报告**: 生成专业的实验报告
+- **API 集成**: 与 PyTorch 和 TensorFlow 无缝集成
+
+## 技术架构
+
+### 前端
+- **Next.js 15**: React 框架，支持 SSR
+- **TypeScript**: 类型安全
+- **Recharts**: 数据可视化
+- **Tailwind CSS**: 样式系统
+
+### 后端
+- **Next.js API Routes**: 服务端 API
+- **PostgreSQL**: 数据库
+- **Prisma**: ORM
+- **NextAuth.js**: 身份验证
+
+## 使用方法
+
+```python
+# Python SDK
+from ml_dashboard import Experiment
+
+exp = Experiment("transformer-v2")
+exp.log_params({
+    "learning_rate": 0.001,
+    "batch_size": 32,
+    "epochs": 100
+})
+
+for epoch in range(100):
+    loss = train_one_epoch()
+    exp.log_metric("loss", loss, step=epoch)
+
+exp.finish()
+```
+
+## 项目亮点
+
+1. **直观的界面**: 清晰的数据可视化
+2. **高性能**: 支持数百万条实验记录
+3. **可扩展**: 模块化设计，易于扩展
+4. **开源**: 完全开源，社区驱动
+
+## 项目状态
+
+✅ 已完成并投入生产使用
