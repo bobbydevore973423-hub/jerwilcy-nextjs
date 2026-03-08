@@ -1,29 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import { Menu, X, Sun, Moon, Search, Github, Twitter, Mail } from "lucide-react";
+import { useState } from "react";
+import { Menu, X, Search } from "lucide-react";
+import ThemeToggle from "@/components/theme-toggle";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    // Check system preference and localStorage
-    const darkMode = localStorage.getItem("dark") === "true" ||
-      (!localStorage.getItem("dark") && window.matchMedia("(prefers-color-scheme: dark)").matches);
-    setIsDark(darkMode);
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
-
-  const toggleDarkMode = () => {
-    const newDark = !isDark;
-    setIsDark(newDark);
-    localStorage.setItem("dark", String(newDark));
-    document.documentElement.classList.toggle("dark");
-  };
 
   const navItems = [
     { name: "首页", href: "/" },
@@ -68,13 +51,7 @@ export default function Navbar() {
             </Link>
 
             {/* Theme Toggle */}
-            <button
-              onClick={toggleDarkMode}
-              className="h-9 w-9 inline-flex items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-              aria-label="Toggle theme"
-            >
-              {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </button>
+            <ThemeToggle />
 
             {/* Mobile Menu Button */}
             <button
