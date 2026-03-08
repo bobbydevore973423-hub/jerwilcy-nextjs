@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import readingTime from "reading-time";
+import { readingTime } from "reading-time-estimator";
 import { Post } from "@/types";
 
 const postsDirectory = path.join(process.cwd(), "content/posts");
